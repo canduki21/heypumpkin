@@ -1,0 +1,23 @@
+#include <SPI.h>
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);  // Make sure to set the correct I2C address
+
+void setup() {
+  Serial.begin(115200);
+  lcd.begin(16, 2);       // Initialize the LCD with 16 columns and 2 rows
+  lcd.clear();            // Clear the display
+  lcd.setCursor(0, 0);    // Set cursor to top left
+  lcd.print("Ready");     // Initial message to show it’s working
+  delay(1000);            // Wait 1 second before continuing
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    String incomingString = Serial.readString();  
+    lcd.clear();             // Clear the LCD screen
+    lcd.setCursor(0, 0);     // Set cursor to the beginning
+    lcd.print(incomingString);  // Print the incoming string to the LCD
+  }
+}
