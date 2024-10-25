@@ -1,0 +1,37 @@
+#include <Talkie.h>
+
+// Initialize Talkie object
+Talkie voice;
+
+// Voice Recognition Module pins
+#include <SoftwareSerial.h>
+SoftwareSerial mySerial(16, 17); // RX, TX for Voice Recognition Module
+
+void setup() {
+  Serial.begin(115200);
+  mySerial.begin(9600);  // Start the Voice Recognition Module
+  
+  Serial.println("Voice recognition and speaker setup");
+  
+  // Add any voice recognition module training code here, if needed
+}
+
+void loop() {
+  if (mySerial.available()) {
+    int command = mySerial.read();  // Read the recognized command
+
+    // Respond based on the recognized command
+    if (command == 1) {  // Command 1: Turn on light
+      Serial.println("Command 1 recognized: Turn on light");
+      
+      // ESP32 talks: Say "Turning on the light"
+      voice.say("turning on the light");  // Basic example
+    }
+    else if (command == 2) {  // Command 2: Ask for time
+      Serial.println("Command 2 recognized: What time is it?");
+      
+      // ESP32 talks: Say "The time is ten o'clock"
+      voice.say("the time is ten o clock");  // Basic example
+    }
+  }
+}
