@@ -1,0 +1,38 @@
+const int soundPin = 25; // Pin connected to the piezo buzzer
+
+void setup() {
+  pinMode(soundPin, OUTPUT); // Set the pin as an output
+}
+
+void loop() {
+  sayHello();
+  delay(3000); // Wait for 3 seconds before repeating
+}
+
+void sayHello() {
+  // Define frequencies for the phonemes
+  int frequencyH = 500; // Frequency for 'H'
+  int frequencyE = 600; // Frequency for 'E'
+  int frequencyL1 = 700; // Frequency for 'L'
+  int frequencyL2 = 700; // Frequency for 'L'
+  int frequencyO = 800; // Frequency for 'O'
+
+  // Duration for each sound
+  int duration = 200; // 200 milliseconds for each sound
+
+  // Play each sound
+  tone(soundPin, frequencyH, duration);
+  delay(duration);
+  
+  tone(soundPin, frequencyE, duration);
+  delay(duration);
+  
+  tone(soundPin, frequencyL1, duration);
+  delay(duration);
+  
+  tone(soundPin, frequencyL2, duration);
+  delay(duration);
+  
+  tone(soundPin, frequencyO, duration);
+  delay(duration);
+}
